@@ -42,8 +42,8 @@ public class Parser {
             tmp = this.jsonData.get(j).split(",",-1);
             JSONObject jobj = new JSONObject();
 
-            for(int k=0; k<catenum; k++) {
-            	if(tmp[k]=="" || tmp[k]==" ")
+            for(int k = 0; k < catenum; k++) {
+            	if(tmp[k] == "" || tmp[k] == " ")
             		jobj.put(category[k],null);
             	else
             		jobj.put(category[k],tmp[k]);
