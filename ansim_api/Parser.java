@@ -37,7 +37,7 @@ public class Parser {
         int catenum = category.length;
         int objnum = this.jsonData.size();
 
-        for(int j=1; j<objnum; j++){
+        for(int j = 1; j < objnum; j++){
             String[] tmp = new String[catenum];
             tmp = this.jsonData.get(j).split(",",-1);
             JSONObject jobj = new JSONObject();
