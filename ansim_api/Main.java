@@ -15,7 +15,7 @@ import org.json.simple.parser.JSONParser;
 class Main {
     public static void main(String[] args) {
         // @Author : CHJ
-        /*SeoulAnsimUpsoInfo seoul = new SeoulAnsimUpsoInfo();
+        SeoulAnsimUpsoInfo seoul = new SeoulAnsimUpsoInfo();
         JSONObject finalOutFile = new JSONObject();
         JSONArray outFile = new JSONArray();
 
@@ -53,7 +53,7 @@ class Main {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     
 
         // @Author : LJS
@@ -77,40 +77,41 @@ class Main {
         }
         
         try {
-        	FileOutputStream test1=new FileOutputStream("./test1.json",false);
-        	FileOutputStream test2=new FileOutputStream("./test2.json",false);
+            FileOutputStream test1=new FileOutputStream("./test1.json",false);
+            FileOutputStream test2=new FileOutputStream("./test2.json",false);
             OutputStreamWriter writer1=new OutputStreamWriter(test1,"UTF-8");
             OutputStreamWriter writer2=new OutputStreamWriter(test2,"UTF-8");
             BufferedWriter out1=new BufferedWriter(writer1);
             BufferedWriter out2=new BufferedWriter(writer2);
-			JSONArray j1 = new JSONArray();
-			JSONArray j2 = new JSONArray();
+	    JSONArray j1 = new JSONArray();
+	    JSONArray j2 = new JSONArray();
 			
-			for(int i=0;i<jobjs1.size();i++) {
+	    for(int i=0;i<jobjs1.size();i++) {
                 JSONObject temp1 = new JSONObject();
                 temp1.put("name", jobjs1.get(i).get("사업장명"));
                 temp1.put("category", jobjs1.get(i).get("업종상세명"));
                 temp1.put("x", jobjs1.get(i).get("정제WGS84위도"));
                 temp1.put("y", jobjs1.get(i).get("정제WGS84경도"));
                 temp1.put("addr", jobjs1.get(i).get("정제지번주소"));
-				j1.add(temp1);
-			}
-			out1.write(j1.toJSONString());
+		j1.add(temp1);
+	    }
+	    out1.write(j1.toJSONString());
 			
-			for(int j=0;j<jobjs2.size();j++) {
-				JSONObject temp2 = new JSONObject();
+	    for(int j=0;j<jobjs2.size();j++) {
+		JSONObject temp2 = new JSONObject();
                 temp2.put("name", jobjs2.get(j).get("사업장명"));
                 temp2.put("category",jobjs2.get(j).get("업종상세"));
                 temp2.put("addr", jobjs2.get(j).get("주소1"));
-				j2.add(temp2);
-			}
-			out2.write(j2.toJSONString());
+		j2.add(temp2);
+	    }
+	    out2.write(j2.toJSONString());
 			
-			test1.close();
-			test2.close();
+	    test1.close();
+	    test2.close();
 			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	} 
+	catch (IOException e) {
+	    e.printStackTrace();
+	}
     }
 }
