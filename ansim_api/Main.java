@@ -59,22 +59,54 @@ class Main {
         // @Author : LJS
         Parser p1 = new Parser();
         Parser p2 = new Parser();
-        String fname1 = "C:/workspace/ansim-restaurant-api/ansim_api/resource/경기도안심식당정보.csv";
-        String fname2 = "C:/workspace/ansim-restaurant-api/ansim_api/resource/농림축산부안심식당정보.csv";
+        String fname1 = "C:/Users/Jisu/Documents/Github/ansim-restaurant-api/ansim_api/resource/경기도안심식당정보.csv";
+        String fname2 = "C:/Users/Jisu/Documents/Github/ansim-restaurant-api/ansim_api/resource/농림축산부안심식당정보.csv";
+        Vector<JSONObject> jobjs1 = null;
+        Vector<JSONObject> jobjs2 = null;
         
         try {
             p1.CSVParser(fname1);
-            Vector<JSONObject> jobjs1 = p1.JsonParser();
-            for(int i = 0; i < jobjs1.size(); i++)
-            	System.out.println(jobjs1.get(i));
+            jobjs1 = p1.JsonParser();
             
             p2.CSVParser(fname2);
-            Vector<JSONObject> jobjs2 = p2.JsonParser();
-            for(int i = 0; i < jobjs2.size(); i++)
-            	System.out.println(jobjs2.get(i));
-        }
+            jobjs2 = p2.JsonParser();
+            
+        }        
         catch (Exception e) { 
             e.printStackTrace(); 
         }
+        
+        try {
+			FileWriter file1 = new FileWriter("./test1.json");
+			FileWriter file2 = new FileWriter("./test2.json");
+			JSONArray j1 = new JSONArray();
+			JSONArray j2 = new JSONArray();
+			
+			for(int i=0;i<jobjs1.size();i++) {
+                JSONObject temp1 = new JSONObject();
+                temp1.put("name", jobjs1.get(i).get("사업장명"));
+                temp1.put("category", jobjs1.get(i).get("업종상세명"));
+                temp1.put("x", jobjs1.get(i).get("정제WGS84위도"));
+                temp1.put("y", jobjs1.get(i).get("정제WGS84경도"));
+                temp1.put("addr", jobjs1.get(i).get("정제지번주소"));
+				j1.add(temp1);
+			}
+			file1.write(j1.toJSONString());
+			
+			for(int j=0;j<jobjs2.size();j++) {
+				JSONObject temp2 = new JSONObject();
+                temp2.put("name", jobjs2.get(j).get("사업장명"));
+                temp2.put("category",jobjs2.get(j).get("업종상세"));
+                temp2.put("addr", jobjs2.get(j).get("주소1"));
+				j2.add(temp2);
+			}
+			file2.write(j2.toJSONString());
+			
+			file1.close();
+			file2.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 }
