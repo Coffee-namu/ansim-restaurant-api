@@ -18,7 +18,7 @@ class Main {
         JSONObject finalOutFile = new JSONObject();
         JSONArray outFile = new JSONArray();
 
-        /*
+        
         for(int j = 0; j < 18; j++) {
             // Crawling all files. ( Index is below 8700 )
             seoul.setStartIndex(0 + j * 500);
@@ -31,7 +31,7 @@ class Main {
                     JSONObject tempOutFile = new JSONObject();
                     if(temp.get("CRTFC_GBN_NM").equals("위생등급제"))    {
                         tempOutFile.put("name", temp.get("UPSO_NM")); // 가게 이름
-                        tempOutFile.put("category",temp.get("BIZCND_CODE_NM")); // 가게 이름
+                        tempOutFile.put("category",temp.get("BIZCND_CODE_NM")); // 가게 apsb
                         tempOutFile.put("x", temp.get("X_CNTS")); // 경도, logitude
                         tempOutFile.put("y", temp.get("Y_DNTS")); // 위도, latitude
                         tempOutFile.put("addr", temp.get("RDN_CODE_NM") + " " +temp.get("RDN_DETAIL_ADDR")); // 한글 주소
@@ -54,7 +54,7 @@ class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        */
+        
 
         // @Author : LJS
         Parser p1 = new Parser();
