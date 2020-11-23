@@ -1,9 +1,10 @@
 package ansim_api;
 
 import java.util.Vector;
-
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.OutputStreamWriter;
 import java.io.IOException;
 
@@ -14,11 +15,10 @@ import org.json.simple.parser.JSONParser;
 class Main {
     public static void main(String[] args) {
         // @Author : CHJ
-        SeoulAnsimUpsoInfo seoul = new SeoulAnsimUpsoInfo();
+        /*SeoulAnsimUpsoInfo seoul = new SeoulAnsimUpsoInfo();
         JSONObject finalOutFile = new JSONObject();
         JSONArray outFile = new JSONArray();
 
-        
         for(int j = 0; j < 18; j++) {
             // Crawling all files. ( Index is below 8700 )
             seoul.setStartIndex(0 + j * 500);
@@ -31,7 +31,7 @@ class Main {
                     JSONObject tempOutFile = new JSONObject();
                     if(temp.get("CRTFC_GBN_NM").equals("위생등급제"))    {
                         tempOutFile.put("name", temp.get("UPSO_NM")); // 가게 이름
-                        tempOutFile.put("category",temp.get("BIZCND_CODE_NM")); // 가게 apsb
+                        tempOutFile.put("category",temp.get("BIZCND_CODE_NM")); // 가게 이름
                         tempOutFile.put("x", temp.get("X_CNTS")); // 경도, logitude
                         tempOutFile.put("y", temp.get("Y_DNTS")); // 위도, latitude
                         tempOutFile.put("addr", temp.get("RDN_CODE_NM") + " " +temp.get("RDN_DETAIL_ADDR")); // 한글 주소
@@ -53,8 +53,8 @@ class Main {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        
+        }*/
+    
 
         // @Author : LJS
         Parser p1 = new Parser();
@@ -77,8 +77,12 @@ class Main {
         }
         
         try {
-			FileWriter file1 = new FileWriter("./test1.json");
-			FileWriter file2 = new FileWriter("./test2.json");
+        	FileOutputStream test1=new FileOutputStream("./test1.json",false);
+        	FileOutputStream test2=new FileOutputStream("./test2.json",false);
+            OutputStreamWriter writer1=new OutputStreamWriter(test1,"UTF-8");
+            OutputStreamWriter writer2=new OutputStreamWriter(test2,"UTF-8");
+            BufferedWriter out1=new BufferedWriter(writer1);
+            BufferedWriter out2=new BufferedWriter(writer2);
 			JSONArray j1 = new JSONArray();
 			JSONArray j2 = new JSONArray();
 			
@@ -91,7 +95,7 @@ class Main {
                 temp1.put("addr", jobjs1.get(i).get("정제지번주소"));
 				j1.add(temp1);
 			}
-			file1.write(j1.toJSONString());
+			out1.write(j1.toJSONString());
 			
 			for(int j=0;j<jobjs2.size();j++) {
 				JSONObject temp2 = new JSONObject();
@@ -100,10 +104,10 @@ class Main {
                 temp2.put("addr", jobjs2.get(j).get("주소1"));
 				j2.add(temp2);
 			}
-			file2.write(j2.toJSONString());
+			out2.write(j2.toJSONString());
 			
-			file1.close();
-			file2.close();
+			test1.close();
+			test2.close();
 			
 		} catch (IOException e) {
 			e.printStackTrace();
