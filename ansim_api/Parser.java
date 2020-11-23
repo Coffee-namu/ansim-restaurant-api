@@ -39,14 +39,19 @@ public class Parser {
 
         for(int j = 1; j < objnum; j++){
             String[] tmp = new String[catenum];
-            tmp = this.jsonData.get(j).split(",",-1);
+            tmp = this.jsonData.get(j).split(",", -1);
             JSONObject jobj = new JSONObject();
 
-            for(int k = 0; k < catenum; k++) {
-            	if(tmp[k] == "" || tmp[k] == " ")
-            		jobj.put(category[k],null);
-            	else
-            		jobj.put(category[k],tmp[k]);
+            try {
+                for(int k = 0; k < catenum; k++) {
+                    if(tmp[k] == "" || tmp[k] == " ")
+                        jobj.put(category[k], null);
+                    else
+                        jobj.put(category[k], tmp[k]);
+                }
+            }
+            catch(Exception e) {
+                // Do nothing... pass.
             }
             	
             jobjs.add(jobj);

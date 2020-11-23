@@ -18,6 +18,7 @@ class Main {
         JSONObject finalOutFile = new JSONObject();
         JSONArray outFile = new JSONArray();
 
+        /*
         for(int j = 0; j < 18; j++) {
             // Crawling all files. ( Index is below 8700 )
             seoul.setStartIndex(0 + j * 500);
@@ -53,7 +54,7 @@ class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    
+        */
 
         // @Author : LJS
         Parser p1 = new Parser();
